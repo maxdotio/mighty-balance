@@ -40,7 +40,7 @@ function parsePortList(opts) {
 }
 
 const upstreamEndpoints = [];
-const host = program.opts().host;
+const host = program.opts().host||'localhost';
 const listen = parseInt(program.opts().listen || 5000);
 const ports = parsePortList(program.opts());
 for (let i = 0; i <= ports.length; i++) {
