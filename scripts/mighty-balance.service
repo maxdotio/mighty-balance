@@ -1,0 +1,9 @@
+[Unit]
+Description=Mighty Balance Service
+
+[Service]
+ExecStart=/home/ubuntu/mighty-balance/mighty-balance
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
