@@ -19,6 +19,16 @@ This will create and start the systemd service for the `mighty-balance` applicat
 
 Be default, this will create the reverse proxy that listens on port 80, and forwards to mighty servers on the same machine as `mighty-balance`.
 
+To verify the installation, make a curl request to the port for mighty's metadata:
+
+```bash
+curl http://localhost/metadata
+```
+
+This should return a JSON object for the currently hosted model.
+
+### Changing the default listening port
+
 To change the listening port, edit the `mighty-balance.service` file, to change the port in the ExecStart command.  For example:
 
 ```
@@ -32,17 +42,25 @@ sudo systemctl stop mighty-balance
 ./install.sh
 ```
 
-## Installation
+## Manual Installation
 
 `mighty-balance` is meant to be built as a single executable, and deployed without the need for installing node.js and node_modules on the host machine/container.
 
-Once the executable is built, just copy it to the target host machine or container.
+Once the executable is built, just copy it to the target host machine or container, and run it however you like.
 
 ## Building
 
-First, install the dependencies, then build the binary.
+Prerequisites: The `pgk` tool https://www.npmjs.com/package/pkg
 
 ```bash
+npm install -g pkg
+```
+
+With `pkg` installed, you can clone the repo and install the dependencies, then build the binary.
+
+```bash
+git clone https://github.com/maxdotio/mighty-balance
+cd src
 npm install
 npm run build
 ```
