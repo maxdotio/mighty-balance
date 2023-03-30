@@ -2,6 +2,36 @@
 
 A fast reverse proxy for Mighty cores.  Access your Mighty inference through a single endpoint!
 
+## Deploy
+
+Pre-requisites: an Ubuntu server already running Mighty Inference Server.
+
+To deploy `mighty-balance` on your mighty server, run the following commands:
+
+```
+curl -O https://max.io/mighty-balance-linux.tar.gz
+tar -zxf mighty-balance-linux.tar.gz
+cd mighty-balance
+./install.sh
+```
+
+This will create and start the systemd service for the `mighty-balance` application that will route requests to all mighty cores.
+
+Be default, this will create the reverse proxy that listens on port 80, and forwards to mighty servers on the same machine as `mighty-balance`.
+
+To change the listening port, edit the `mighty-balance.service` file, to change the port in the ExecStart command.  For example:
+
+```
+ExecStart=/home/ubuntu/mighty-balance/mighty-balance --listen 5000
+```
+
+Then save the file and run the following:
+
+```
+sudo systemctl stop mighty-balance
+./install.sh
+```
+
 ## Installation
 
 `mighty-balance` is meant to be built as a single executable, and deployed without the need for installing node.js and node_modules on the host machine/container.
