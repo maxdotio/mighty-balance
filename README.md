@@ -17,7 +17,7 @@ cd mighty-balance
 
 This will create and start the systemd service for the `mighty-balance` application that will route requests to all mighty cores.
 
-Be default, this will create the reverse proxy that listens on port 80, and forwards to mighty servers on the same machine as `mighty-balance`.
+Be default, this will create the reverse proxy that listens on port 5000, and forwards to mighty servers on the same machine as `mighty-balance`.
 
 To verify the installation, make a curl request to the port for mighty's metadata:
 
@@ -29,10 +29,10 @@ This should return a JSON object for the currently hosted model.
 
 ### Changing the default listening port
 
-To change the listening port, edit the `mighty-balance.service` file, to change the port in the ExecStart command.  For example:
+To change the listening port, edit the `mighty-balance.service` file, to change the port in the ExecStart command.  For example, to listen on port 80:
 
 ```
-ExecStart=/home/ubuntu/mighty-balance/mighty-balance --listen 5000
+ExecStart=/home/ubuntu/mighty-balance/mighty-balance --listen 80
 ```
 
 Then save the file and run the following:
